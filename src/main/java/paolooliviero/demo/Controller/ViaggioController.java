@@ -41,14 +41,13 @@ public class ViaggioController {
         return viaggioService.getViaggio(page, size, sortBy);
     }
 
-    // 4. - PUT http://localhost:3001/authors/{id} (+ req.body)
     @PutMapping("/{viaggioId}")
     public Viaggio findAndUpdate(@PathVariable int authorId, @RequestBody Dipendente body) {
         return viaggioService.findByIdAndUpdate(authorId, body);
     }
 
     @DeleteMapping("/{viaggioId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT) // <-- 204 NO CONTENT
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void findAndDelete(@PathVariable int authorId) {
         viaggioService.findByIdAndDelete(authorId);
     }

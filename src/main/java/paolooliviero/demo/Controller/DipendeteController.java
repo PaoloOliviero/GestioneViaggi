@@ -19,6 +19,7 @@ public class DipendeteController {
 
     @Autowired
     private DipendenteService dipendenteService;
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED) // <-- 201
     public RisponstaDipendente saveDipendente(@RequestBody @Validated DipendentePayload body, BindingResult validation) throws Exception {
@@ -31,18 +32,17 @@ public class DipendeteController {
 
     @GetMapping("")
     public Page<Dipendente> getDipendente(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+                                          @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
         return DipendenteService.getDipendente(page, size, sortBy);
     }
 
-    // 4. - PUT http://localhost:3001/authors/{id} (+ req.body)
     @PutMapping("/{dipendenteId}")
-    public Dipendente findAndUpdate(@PathVariable int authorId, @RequestBody Dipendente body) {
-        return dipendenteService.findByIdAndUpdate(authorId, body);
+    public Dipendente findAndUpdate(@PathVariable int dipendenteId, @RequestBody Dipendente body) {
+        return dipendenteService.findByIdAndUpdate(dipendenteId, body);
     }
 
     @DeleteMapping("/{dipendenteId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT) // <-- 204 NO CONTENT
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void findAndDelete(@PathVariable int authorId) {
         dipendenteService.findByIdAndDelete(authorId);
     }
@@ -55,7 +55,6 @@ public class DipendeteController {
             throw new RuntimeException(e);
         }
     }
-
 }
 
 
